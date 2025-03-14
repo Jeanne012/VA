@@ -11,53 +11,53 @@ st.write("Answer the questions below to assess the ESG sustainability of your in
 questions = {
     "Underwriting & Product Design": {
         "Environmental": [
-            "Does the policy exclude fossil-fuel-intensive assets?",
-            "Does the policy incentivize low-carbon infrastructure (e.g., green buildings, EVs)?",
-            "Does the policy integrate climate adaptation measures?"
+            "Does the policy promote the decarbonization of the product portfolio (e.g., excluding fossil-fuel-intensive assets)?",
+            "Does the policy provide coverage for resilient infrastructure and climate adaptation incentives?",
+            "Does the policy promote sustainable resource use (e.g., repair-first approach, use of recycled materials)?"
         ],
         "Social": [
-            "Does the policy ensure fair pricing for vulnerable populations?",
-            "Are there non-discriminatory criteria in underwriting?",
-            "Does the product promote financial inclusion?"
+            "Does the policy ensure fair pricing models for low-income policyholders?",
+            "Does the underwriting process ensure non-discriminatory and equitable access?",
+            "Does the policy promote consumer protection through clear and transparent ethical terms?"
         ],
         "Governance": [
-            "Are sustainability risks considered in underwriting decisions?",
-            "Does the policy include transparency in ESG claims?",
-            "Is there independent verification of ESG factors in product design?"
+            "Are ESG risks integrated into underwriting decisions?",
+            "Does the policy include independent verification of ESG factors?",
+            "Does the policy prevent greenwashing by ensuring transparent sustainability claims?"
         ]
     },
     "Claims Management": {
         "Environmental": [
-            "Does the claims process encourage repair over replacement?",
-            "Are recycled or sustainable materials prioritized in claims?",
-            "Is energy efficiency considered in damage compensation?"
+            "Does the claims process prioritize repair over replacement to reduce waste?",
+            "Are recycled or sustainable materials encouraged in claims settlements?",
+            "Are climate resilience measures integrated into claims management (e.g., rebuilding with green materials)?"
         ],
         "Social": [
-            "Is there a structured appeal process for denied claims?",
-            "Are claims settled fairly and without bias?",
-            "Are there support services for customers affected by extreme weather events?"
+            "Is there a structured appeal process for denied claims to ensure fairness?",
+            "Are claims settled fairly and transparently, without bias?",
+            "Does the claims process include support services for vulnerable customers (e.g., mental health post-incident support)?"
         ],
         "Governance": [
-            "Are anti-fraud measures in place to ensure fair claims processing?",
-            "Is there third-party oversight of claims handling?",
-            "Does the company provide transparency in claims resolutions?"
+            "Are strong anti-fraud measures in place for claims processing?",
+            "Is there third-party oversight ensuring fair and ethical claims handling?",
+            "Does the company disclose its claims sustainability impact?"
         ]
     },
     "Asset & Premium Management": {
         "Environmental": [
-            "Does the company divest from high-carbon investments?",
-            "Are ESG principles integrated into investment decisions?",
-            "Are investments aligned with climate transition goals?"
+            "Does the company divest from high-carbon investments and align with climate transition goals?",
+            "Are ESG principles integrated into investment screening and decision-making?",
+            "Does the company invest in biodiversity-friendly projects (e.g., reforestation, conservation)?"
         ],
         "Social": [
-            "Does the company invest in social impact initiatives?",
-            "Are community-oriented investments prioritized?",
-            "Does the investment strategy align with DEI principles?"
+            "Does the company prioritize social impact investing in underprivileged communities?",
+            "Are community-oriented investments aligned with stakeholder engagement initiatives?",
+            "Does the investment strategy align with diversity, equity, and inclusion (DEI) principles?"
         ],
         "Governance": [
-            "Does the company publicly disclose ESG performance?",
-            "Are ESG-linked executive incentives in place?",
-            "Is the ESG investment strategy reviewed by an independent body?"
+            "Does the company publicly disclose ESG performance and investment policies?",
+            "Are ESG-linked executive incentives in place to ensure accountability?",
+            "Is the ESG investment strategy reviewed by an independent sustainability body?"
         ]
     }
 }
