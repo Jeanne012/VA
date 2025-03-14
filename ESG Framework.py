@@ -93,35 +93,31 @@ elif percentage >= 50:
 else:
     rating = "Bronze - Needs Improvement"
 
-# Display results
-st.subheader("Sustainability Score")
-st.write(f"Your product scored: {total_yes} out of {total_questions} ({percentage:.2f}%)")
-st.success(f"Sustainability Rating: {rating}")
+# Display results in an expandable box
+with st.expander("Sustainability Score & Results"):
+    st.write(f"Your product scored: {total_yes} out of {total_questions} ({percentage:.2f}%)")
+    st.success(f"Sustainability Rating: {rating}")
 
-# Stacked bar chart visualization
-st.subheader("Score Distribution by Category")
-categories = list(category_scores.keys())
-environmental_scores = [category_scores[cat]["Environmental"] for cat in categories]
-social_scores = [category_scores[cat]["Social"] for cat in categories]
-governance_scores = [category_scores[cat]["Governance"] for cat in categories]
+    # Stacked bar chart visualization
+    st.subheader("Score Distribution by Category")
+    categories = list(category_scores.keys())
+    environmental_scores = [category_scores[cat]["Environmental"] for cat in categories]
+    social_scores = [category_scores[cat]["Social"] for cat in categories]
+    governance_scores = [category_scores[cat]["Governance"] for cat in categories]
 
-fig, ax = plt.subplots()
-bar_width = 0.5
-bottom = np.zeros(len(categories))
-ax.bar(categories, environmental_scores, bar_width, label='Environmental', color='green', bottom=bottom)
-bottom += environmental_scores
-ax.bar(categories, social_scores, bar_width, label='Social', color='blue', bottom=bottom)
-bottom += social_scores
-ax.bar(categories, governance_scores, bar_width, label='Governance', color='red', bottom=bottom)
+    fig, ax = plt.subplots()
+    bar_width = 0.5
+    bottom = np.zeros(len(categories))
+    ax.bar(categories, environmental_scores, bar_width, label='Environmental', color='#2E7D32', bottom=bottom)
+    bottom += environmental_scores
+    ax.bar(categories, social_scores, bar_width, label='Social', color='#66BB6A', bottom=bottom)
+    bottom += social_scores
+    ax.bar(categories, governance_scores, bar_width, label='Governance', color='#A5D6A7', bottom=bottom)
 
-ax.set_ylabel("Yes Responses")
-ax.set_title("Stacked Bar Chart of ESG Scores")
-ax.legend()
-st.pyplot(fig)
+    ax.set_ylabel("Yes Responses")
+    ax.set_title("Stacked Bar Chart of ESG Scores")
+    ax.legend()
+    st.pyplot(fig)
 
-# Instructions for running the app
-st.write("To run this app from GitHub:")
-st.code("""
-1. Install Streamlit: `pip install streamlit`
-2. Run the app: `streamlit run esg_framework.py`
-""", language="bash")
+
+
