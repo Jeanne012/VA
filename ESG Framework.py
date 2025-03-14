@@ -115,9 +115,9 @@ with st.expander("See Results"):
     bottom += social_scores
     ax.bar(categories, governance_scores, bar_width, label='Governance', color='#A5D6A7', bottom=bottom)
 
-    ax.set_ylabel("Percentage of Yes Responses")
+    ax.set_ylabel("Percentage of Yes Responses", axis='y', labelsize=8)
     ax.set_title("Stacked Bar Chart of ESG Scores")
-    ax.legend(["Environmental", "Social", "Governance"], loc='upper right', fontsize=10, frameon=False)
+    ax.legend(["Environmental", "Social", "Governance"], loc='upper right', fontsize=10, frameon=True)
     ax.tick_params(axis='x', labelsize=8)  # Reduce label size
     st.pyplot(fig)
 
