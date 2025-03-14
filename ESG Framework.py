@@ -85,19 +85,22 @@ total_yes = sum(sum(sub.values()) for sub in category_scores.values())
 total_questions = sum(len(sub[subcat]) for sub in questions.values() for subcat in sub)
 percentage = (total_yes / total_questions) * 100 if total_questions > 0 else 0  # Avoid division by zero
 
-# Assign sustainability rating
+# Assign sustainability rating and corresponding color
 if percentage >= 80:
     rating = "Green - Highly Sustainable"
+    color = "green"
 elif percentage >= 50:
     rating = "Silver - Moderately Sustainable"
+    color = "silver"
 else:
     rating = "Bronze - Needs Improvement"
+    color = "#cd7f32"  # Bronze color
 
 # Display results in an expandable box
 st.markdown("## Sustainability Score")
 with st.expander("See Results"):
     st.write(f"Your product scored: {total_yes} out of {total_questions} ({percentage:.2f}%)")
-    st.success(f"Sustainability Rating: {rating}")
+    st.markdown(f'<div style="background-color:{color};padding:10px;border-radius:5px;"><b>{rating}</b></div>', unsafe_allow_html=True)
 
     # Stacked bar chart visualization
     st.subheader("Score Distribution by Category")
