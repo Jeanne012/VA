@@ -6,24 +6,62 @@ import matplotlib.pyplot as plt
 st.title("ESG Sustainability Assessment for Non-Life Insurance Products")
 st.write("Answer the questions below to assess the ESG sustainability of your insurance product.")
 
-# Define ESG questionnaire
+
+# Define ESG questionnaire with subcategories
 questions = {
-    "Underwriting & Product Design": [
-        "Does the policy exclude fossil-fuel-intensive assets?",
-        "Does the policy incentivize low-carbon infrastructure (e.g., green buildings, EVs)?",
-        "Does the policy integrate climate adaptation measures?"
-    ],
-    "Claims Management": [
-        "Does the claims process encourage repair over replacement?",
-        "Are recycled or sustainable materials prioritized in claims?",
-        "Is there a structured appeal process for denied claims?"
-    ],
-    "Asset & Premium Management": [
-        "Does the company divest from high-carbon investments?",
-        "Are ESG principles integrated into investment decisions?",
-        "Does the company publicly disclose ESG performance?"
-    ]
+    "Underwriting & Product Design": {
+        "Environmental": [
+            "Does the policy exclude fossil-fuel-intensive assets?",
+            "Does the policy incentivize low-carbon infrastructure (e.g., green buildings, EVs)?",
+            "Does the policy integrate climate adaptation measures?"
+        ],
+        "Social": [
+            "Does the policy ensure fair pricing for vulnerable populations?",
+            "Are there non-discriminatory criteria in underwriting?",
+            "Does the product promote financial inclusion?"
+        ],
+        "Governance": [
+            "Are sustainability risks considered in underwriting decisions?",
+            "Does the policy include transparency in ESG claims?",
+            "Is there independent verification of ESG factors in product design?"
+        ]
+    },
+    "Claims Management": {
+        "Environmental": [
+            "Does the claims process encourage repair over replacement?",
+            "Are recycled or sustainable materials prioritized in claims?",
+            "Is energy efficiency considered in damage compensation?"
+        ],
+        "Social": [
+            "Is there a structured appeal process for denied claims?",
+            "Are claims settled fairly and without bias?",
+            "Are there support services for customers affected by extreme weather events?"
+        ],
+        "Governance": [
+            "Are anti-fraud measures in place to ensure fair claims processing?",
+            "Is there third-party oversight of claims handling?",
+            "Does the company provide transparency in claims resolutions?"
+        ]
+    },
+    "Asset & Premium Management": {
+        "Environmental": [
+            "Does the company divest from high-carbon investments?",
+            "Are ESG principles integrated into investment decisions?",
+            "Are investments aligned with climate transition goals?"
+        ],
+        "Social": [
+            "Does the company invest in social impact initiatives?",
+            "Are community-oriented investments prioritized?",
+            "Does the investment strategy align with DEI principles?"
+        ],
+        "Governance": [
+            "Does the company publicly disclose ESG performance?",
+            "Are ESG-linked executive incentives in place?",
+            "Is the ESG investment strategy reviewed by an independent body?"
+        ]
+    }
 }
+
 
 # Store responses
 responses = {}
