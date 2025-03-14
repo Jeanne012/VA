@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 st.title("ESG Sustainability Assessment for Non-Life Insurance Products")
 st.write("Answer the questions below to assess the ESG sustainability of your insurance product.")
 
-
 # Define ESG questionnaire with subcategories
 questions = {
     "Underwriting & Product Design": {
@@ -62,14 +61,15 @@ questions = {
     }
 }
 
-
 # Store responses
 responses = {}
 st.subheader("Answer the following Yes/No questions:")
-for category, qs in questions.items():
+for category, subcategories in questions.items():
     st.subheader(category)
-    for q in qs:
-        responses[q] = st.radio(q, ("Yes", "No"))
+    for subcategory, qs in subcategories.items():
+        st.write(f"**{subcategory}**")
+        for q in qs:
+            responses[q] = st.radio(q, ("Yes", "No"))
 
 # Compute ESG score
 score = sum(1 for response in responses.values() if response == "Yes")
