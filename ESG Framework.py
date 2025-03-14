@@ -94,7 +94,8 @@ else:
     rating = "Bronze - Needs Improvement"
 
 # Display results in an expandable box
-with st.expander("Sustainability Score & Results"):
+st.markdown("## Sustainability Score")
+with st.expander("See Results"):
     st.write(f"Your product scored: {total_yes} out of {total_questions} ({percentage:.2f}%)")
     st.success(f"Sustainability Rating: {rating}")
 
@@ -117,7 +118,6 @@ with st.expander("Sustainability Score & Results"):
     ax.set_ylabel("Yes Responses")
     ax.set_title("Stacked Bar Chart of ESG Scores")
     ax.legend()
+    ax.tick_params(axis='x', labelsize=10)  # Reduce label size
     st.pyplot(fig)
-
-
 
