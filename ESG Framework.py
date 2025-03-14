@@ -82,7 +82,7 @@ for category, subcategories in questions.items():
 # Compute overall ESG score
 total_yes = sum(sum(sub.values()) for sub in category_scores.values())
 total_questions = sum(len(sub[subcat]) for sub in questions.values() for subcat in sub)
-percentage = (total_yes / total_questions) * 100
+percentage = (total_yes / total_questions) * 100 if total_questions > 0 else 0  # Avoid division by zero
 
 # Assign sustainability rating
 if percentage >= 80:
@@ -99,15 +99,25 @@ st.success(f"Sustainability Rating: {rating}")
 
 # Pie chart visualization
 st.subheader("Score Distribution by Category")
-fig, ax = plt.subplots()
 labels = []
 sizes = []
 for category, subcategories in category_scores.items():
     for subcategory, score in subcategories.items():
-        labels.append(f"{category} - {subcategory}")
-        sizes.append(score)
-ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
-ax.axis("equal")  # Equal aspect ratio ensures the pie chart is circular
-st.pyplot(fig)
+        if score > 0:  # Only add non-zero values
+            labels.append(f"{category} - {subcategory}")
+            sizes.append(score)
 
+if sum(sizes) > 0:
+    fig, ax = plt.subplots()
+    ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
+    ax.axis("equal")  # Equal aspect ratio ensures the pie chart is circular
+    st.pyplot(fig)
+else:
+    st.write("No answers selected yet, pie chart will appear once responses are provided.")
 
+# Instructions for running the app
+st.write("To run this app from GitHub:")
+st.code("""
+1. Install Streamlit: `pip install streamlit`
+2. Run the app: `streamlit run esg_framework.py`
+""", language="bash")
