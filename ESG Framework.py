@@ -65,7 +65,7 @@ questions = {
 # Store responses
 responses = {}
 for category, subcategories in questions.items():
-    st.markdown(f"## {category}")  # Display category as a large header
+    st.markdown(f"### {category}")  # Display category as a large header
     
     # Create three expandable boxes for E, S, G
     for subcategory, qs in subcategories.items():
@@ -96,7 +96,7 @@ else:
     color = "#cd7f32"  # Bronze color
 
 # Display results in an expandable box
-st.markdown("## Sustainability Score")
+st.markdown("### Sustainability Score")
 with st.expander("See Results"):
     st.write(f"Your product scored: {total_yes} out of {total_questions} ({percentage:.2f}%)")
     st.markdown(f'<div style="background-color:{color};padding:10px;border-radius:5px;"><b>{rating}</b></div>', unsafe_allow_html=True)
