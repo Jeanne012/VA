@@ -67,9 +67,9 @@ st.subheader("Answer the following Yes/No questions:")
 for category, subcategories in questions.items():
     with st.expander(category):
         for subcategory, qs in subcategories.items():
-            with st.expander(subcategory):
-                for q in qs:
-                    responses[q] = st.radio(q, ("Yes", "No"))
+            st.markdown(f"### {subcategory}")  # Display subcategory as a header
+            for q in qs:
+                responses[q] = st.radio(q, ("Yes", "No"), key=q)  # Add unique key to prevent errors
 
 # Compute ESG score
 score = sum(1 for response in responses.values() if response == "Yes")
@@ -98,3 +98,9 @@ ax.set_xlabel("Percentage")
 ax.set_title("Sustainability Score")
 st.pyplot(fig)
 
+# Instructions for running the app
+st.write("To run this app from GitHub:")
+st.code("""
+1. Install Streamlit: `pip install streamlit`
+2. Run the app: `streamlit run esg_framework.py`
+""", language="bash")
