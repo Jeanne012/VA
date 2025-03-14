@@ -64,7 +64,6 @@ questions = {
 
 # Store responses
 responses = {}
-st.subheader("Answer the following Yes/No questions:")
 for category, subcategories in questions.items():
     st.markdown(f"## {category}")  # Display category as a large header
     
@@ -122,6 +121,6 @@ with st.expander("See Results"):
     ax.set_title("Stacked Bar Chart of ESG Scores")
     ax.legend(["Environmental", "Social", "Governance"], loc='center left', bbox_to_anchor=(1, 0.5), fontsize=10, frameon=True)
     ax.tick_params(axis='x', labelsize=8)
-    ax.tick_params(axis='y', labelsize=8)# Reduce label size
+    ax.tick_params(axis='y', labelsize=8) # Reduce label size
     st.pyplot(fig)
 
