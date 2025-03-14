@@ -111,11 +111,12 @@ with st.expander("See Results"):
     fig, ax = plt.subplots()
     bar_width = 0.5
     bottom = np.zeros(len(categories))
-    ax.bar(categories, environmental_scores, bar_width, label='Environmental', color='#2E7D32', bottom=bottom)
+    ax.bar(categories, np.array(environmental_scores) / total_questions * 100, bar_width, color='#2E7D32', bottom=bottom, label='Environmental')
     bottom += environmental_scores
-    ax.bar(categories, social_scores, bar_width, label='Social', color='#66BB6A', bottom=bottom)
+    ax.bar(categories, np.array(social_scores) / total_questions * 100, bar_width, color='#66BB6A', bottom=bottom, label='Social')
     bottom += social_scores
-    ax.bar(categories, governance_scores, bar_width, label='Governance', color='#A5D6A7', bottom=bottom)
+    ax.bar(categories, np.array(governance_scores) / total_questions * 100, bar_width, color='#A5D6A7', bottom=bottom, label='Governance')
+
 
     ax.set_ylabel("Percentage of Yes Responses")
     ax.set_title("Stacked Bar Chart of ESG Scores")
