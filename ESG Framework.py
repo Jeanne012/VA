@@ -100,9 +100,4 @@ ax.set_xlabel("Percentage")
 ax.set_title("Sustainability Score")
 st.pyplot(fig)
 
-# Instructions for running the app
-st.write("To run this app from GitHub:")
-st.code("""
-1. Install Streamlit: `pip install streamlit`
-2. Run the app: `streamlit run esg_framework.py`
-""", language="bash")
+
