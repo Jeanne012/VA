@@ -111,14 +111,14 @@ with st.expander("See Results"):
     fig, ax = plt.subplots()
     bar_width = 0.5
     bottom = np.zeros(len(categories))
-    ax.bar(categories, np.array(environmental_scores) / total_questions * 100, bar_width, color='#2E7D32', bottom=bottom, label='Environmental')
+    ax.bar(categories, environmental_scores, bar_width, color='#2E7D32', bottom=bottom, label='Environmental')
     bottom += np.array(environmental_scores) / total_questions * 100
-    ax.bar(categories, np.array(social_scores) / total_questions * 100, bar_width, color='#66BB6A', bottom=bottom, label='Social')
+    ax.bar(categories, social_scores, bar_width, color='#66BB6A', bottom=bottom, label='Social')
     bottom += np.array(governance_scores) / total_questions * 100
-    ax.bar(categories, np.array(governance_scores) / total_questions * 100, bar_width, color='#A5D6A7', bottom=bottom, label='Governance')
+    ax.bar(categories, governance_scores, bar_width, color='#A5D6A7', bottom=bottom, label='Governance')
 
-    ax.set_ylabel("Percentage of Yes Responses")
-    ax.set_ylim(0, 100)
+    ax.set_ylabel("Number of Yes Responses")
+    ax.set_ylim(0, total_questions)
     ax.set_title("Stacked Bar Chart of ESG Scores")
     ax.legend(["Environmental", "Social", "Governance"], loc='center left', bbox_to_anchor=(1, 0.5), fontsize=10, frameon=True)
     ax.tick_params(axis='x', labelsize=8)
