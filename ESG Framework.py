@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Title
 st.title("ESG Sustainability Assessment for Non-Life Insurance Products")
@@ -97,23 +98,26 @@ st.subheader("Sustainability Score")
 st.write(f"Your product scored: {total_yes} out of {total_questions} ({percentage:.2f}%)")
 st.success(f"Sustainability Rating: {rating}")
 
-# Pie chart visualization
+# Stacked bar chart visualization
 st.subheader("Score Distribution by Category")
-labels = []
-sizes = []
-for category, subcategories in category_scores.items():
-    for subcategory, score in subcategories.items():
-        if score > 0:  # Only add non-zero values
-            labels.append(f"{category} - {subcategory}")
-            sizes.append(score)
+categories = list(category_scores.keys())
+environmental_scores = [category_scores[cat]["Environmental"] for cat in categories]
+social_scores = [category_scores[cat]["Social"] for cat in categories]
+governance_scores = [category_scores[cat]["Governance"] for cat in categories]
 
-if sum(sizes) > 0:
-    fig, ax = plt.subplots()
-    ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
-    ax.axis("equal")  # Equal aspect ratio ensures the pie chart is circular
-    st.pyplot(fig)
-else:
-    st.write("No answers selected yet, pie chart will appear once responses are provided.")
+fig, ax = plt.subplots()
+bar_width = 0.5
+bottom = np.zeros(len(categories))
+ax.bar(categories, environmental_scores, bar_width, label='Environmental', color='green', bottom=bottom)
+bottom += environmental_scores
+ax.bar(categories, social_scores, bar_width, label='Social', color='blue', bottom=bottom)
+bottom += social_scores
+ax.bar(categories, governance_scores, bar_width, label='Governance', color='red', bottom=bottom)
+
+ax.set_ylabel("Yes Responses")
+ax.set_title("Stacked Bar Chart of ESG Scores")
+ax.legend()
+st.pyplot(fig)
 
 # Instructions for running the app
 st.write("To run this app from GitHub:")
