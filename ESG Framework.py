@@ -73,10 +73,16 @@ for category, subcategories in questions.items():
             for q in qs:
                 responses[q] = st.radio(q, ("Yes", "No"), key=q, index=None)  # Add unique key to prevent errors
 
-# Compute ESG score
-score = sum(1 for response in responses.values() if response == "Yes")
-total_questions = len(responses)
-percentage = (score / total_questions) * 100
+# Compute ESG score per category
+category_scores = {category: {"Environmental": 0, "Social": 0, "Governance": 0} for category in questions}
+for category, subcategories in questions.items():
+    for subcategory, qs in subcategories.items():
+        category_scores[category][subcategory] = sum(1 for q in qs if responses[q] == "Yes")
+
+# Compute overall ESG score
+total_yes = sum(sum(sub.values()) for sub in category_scores.values())
+total_questions = sum(len(sub[subcat]) for sub in questions.values() for subcat in sub)
+percentage = (total_yes / total_questions) * 100
 
 # Assign sustainability rating
 if percentage >= 80:
@@ -88,16 +94,20 @@ else:
 
 # Display results
 st.subheader("Sustainability Score")
-st.write(f"Your product scored: {score} out of {total_questions} ({percentage:.2f}%)")
+st.write(f"Your product scored: {total_yes} out of {total_questions} ({percentage:.2f}%)")
 st.success(f"Sustainability Rating: {rating}")
 
-# Visualization
-st.subheader("Score Visualization")
+# Pie chart visualization
+st.subheader("Score Distribution by Category")
 fig, ax = plt.subplots()
-ax.barh(["Sustainability Score"], [percentage], color="green")
-ax.set_xlim(0, 100)
-ax.set_xlabel("Percentage")
-ax.set_title("Sustainability Score")
+labels = []
+sizes = []
+for category, subcategories in category_scores.items():
+    for subcategory, score in subcategories.items():
+        labels.append(f"{category} - {subcategory}")
+        sizes.append(score)
+ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
+ax.axis("equal")  # Equal aspect ratio ensures the pie chart is circular
 st.pyplot(fig)
 
 
