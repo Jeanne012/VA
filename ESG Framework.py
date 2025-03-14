@@ -117,7 +117,6 @@ with st.expander("See Results"):
     bottom += social_scores
     ax.bar(categories, np.array(governance_scores) / total_questions * 100, bar_width, color='#A5D6A7', bottom=bottom, label='Governance')
 
-
     ax.set_ylabel("Percentage of Yes Responses")
     ax.set_ylim(0, 100)
     ax.set_title("Stacked Bar Chart of ESG Scores")
