@@ -71,7 +71,7 @@ for category, subcategories in questions.items():
     for subcategory, qs in subcategories.items():
         with st.expander(subcategory):
             for q in qs:
-                responses[q] = st.radio(q, ("Yes", "No"), key=q)  # Add unique key to prevent errors
+                responses[q] = st.radio(q, ("Yes", "No"), key=q, index=None)  # Add unique key to prevent errors
 
 # Compute ESG score
 score = sum(1 for response in responses.values() if response == "Yes")
