@@ -65,11 +65,15 @@ questions = {
 responses = {}
 st.subheader("Answer the following Yes/No questions:")
 for category, subcategories in questions.items():
-    with st.expander(category):
-        for subcategory, qs in subcategories.items():
-            st.markdown(f"### {subcategory}")  # Display subcategory as a header
+    st.markdown(f"## {category}")  # Display category as a large header
+    cols = st.columns(3)  # Create three columns for E, S, G
+    i = 0
+    for subcategory, qs in subcategories.items():
+        with cols[i]:
+            st.markdown(f"### {subcategory}")  # Display subcategory inside its own column
             for q in qs:
                 responses[q] = st.radio(q, ("Yes", "No"), key=q)  # Add unique key to prevent errors
+        i += 1
 
 # Compute ESG score
 score = sum(1 for response in responses.values() if response == "Yes")
