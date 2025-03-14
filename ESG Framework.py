@@ -65,11 +65,11 @@ questions = {
 responses = {}
 st.subheader("Answer the following Yes/No questions:")
 for category, subcategories in questions.items():
-    st.subheader(category)
-    for subcategory, qs in subcategories.items():
-        st.write(f"**{subcategory}**")
-        for q in qs:
-            responses[q] = st.radio(q, ("Yes", "No"))
+    with st.expander(category):
+        for subcategory, qs in subcategories.items():
+            with st.expander(subcategory):
+                for q in qs:
+                    responses[q] = st.radio(q, ("Yes", "No"))
 
 # Compute ESG score
 score = sum(1 for response in responses.values() if response == "Yes")
