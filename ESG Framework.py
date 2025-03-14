@@ -102,9 +102,10 @@ with st.expander("See Results"):
     st.write(f"Your product scored: {total_yes} out of {total_questions} ({percentage:.2f}%)")
     st.markdown(f'<div style="background-color:{color};padding:10px;border-radius:5px;"><b>{rating}</b></div>', unsafe_allow_html=True)
 
-    # Stacked bar chart visualization
     st.subheader("Score Distribution by Category")
     categories = list(category_scores.keys())
+    max_possible_yes = max(sum(len(questions[cat][subcat]) for subcat in questions[cat]) for cat in categories)  # Maximum possible Yes per category
+
     environmental_scores = [category_scores[cat]["Environmental"] for cat in categories]
     social_scores = [category_scores[cat]["Social"] for cat in categories]
     governance_scores = [category_scores[cat]["Governance"] for cat in categories]
@@ -112,17 +113,21 @@ with st.expander("See Results"):
     fig, ax = plt.subplots()
     bar_width = 0.5
     bottom = np.zeros(len(categories))
+
+    # Normalize values to fit within the maximum possible range
     ax.bar(categories, environmental_scores, bar_width, color='#2E7D32', bottom=bottom, label='Environmental')
-    bottom += np.array(environmental_scores) / total_questions * 100
+    bottom += environmental_scores
     ax.bar(categories, social_scores, bar_width, color='#66BB6A', bottom=bottom, label='Social')
-    bottom += np.array(governance_scores) / total_questions * 100
+    bottom += social_scores
     ax.bar(categories, governance_scores, bar_width, color='#A5D6A7', bottom=bottom, label='Governance')
 
     ax.set_ylabel("Number of Yes Responses")
-    ax.set_ylim(0, total_questions)
+    ax.set_ylim(0, max_possible_yes)  # Ensuring y-axis max is per-category limit
     ax.set_title("Stacked Bar Chart of ESG Scores")
-    ax.legend(["Environmental", "Social", "Governance"], loc='center left', bbox_to_anchor=(1, 0.5), fontsize=10, frameon=True)
     ax.tick_params(axis='x', labelsize=8)
-    ax.tick_params(axis='y', labelsize=8) # Reduce label size
+    ax.tick_params(axis='y', labelsize=8)
+    ax.legend(["Environmental", "Social", "Governance"], loc='center left', bbox_to_anchor=(1, 0.5), fontsize=10, frameon=True)
+
     st.pyplot(fig)
 
+    
