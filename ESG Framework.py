@@ -112,9 +112,9 @@ with st.expander("See Results"):
     bar_width = 0.5
     bottom = np.zeros(len(categories))
     ax.bar(categories, np.array(environmental_scores) / total_questions * 100, bar_width, color='#2E7D32', bottom=bottom, label='Environmental')
-    bottom += environmental_scores
+    bottom += np.array(environmental_scores) / total_questions * 100
     ax.bar(categories, np.array(social_scores) / total_questions * 100, bar_width, color='#66BB6A', bottom=bottom, label='Social')
-    bottom += social_scores
+    bottom += np.array(governance_scores) / total_questions * 100
     ax.bar(categories, np.array(governance_scores) / total_questions * 100, bar_width, color='#A5D6A7', bottom=bottom, label='Governance')
 
     ax.set_ylabel("Percentage of Yes Responses")
